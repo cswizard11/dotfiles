@@ -108,9 +108,6 @@ vim.fn.sign_define("DiagnosticSignHint",
 vim.keymap.set('n', '<leader>r', ':Neotree toggle float<CR>', {})
 vim.keymap.set('n', '<leader>e', ":Telescope file_browser path=%:p:h select_buffer=true<cr>", {})
 
-vim.keymap.set('n', '<leader>j', ':set filetype=java<CR>', {})
-vim.keymap.set('n', '<leader>h', ':set filetype=html<CR>', {})
-
 vim.keymap.set('n', '<leader>k', function() vim.diagnostic.open_float() end)
 
 vim.keymap.set('v', '<leader>y', '"+y', {})
