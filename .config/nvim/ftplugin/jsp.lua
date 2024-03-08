@@ -1,7 +1,10 @@
+vim.treesitter.language.register('java', 'jsp')
 vim.keymap.set('n', '<localleader>j', function()
-    vim.lsp.buf_detach_client(0, 1)
-    vim.treesitter.language.register('java', 'jsp')
+    pcall(function() vim.lsp.buf_detach_client(0, 1) end)
     vim.cmd('set filetype=jsp')
+    vim.opt.tabstop = 4
+    vim.opt.softtabstop = 4
+    vim.opt.shiftwidth = 4
     vim.opt.expandtab = true
 end, {})
 
