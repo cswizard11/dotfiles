@@ -7,7 +7,7 @@ vim.keymap.set('n', '<localleader>j', function()
     vim.opt.tabstop = 4
     vim.opt.softtabstop = 4
     vim.opt.shiftwidth = 4
-    vim.opt.expandtab = false
+    vim.opt.expandtab = true
 end, {})
 
 vim.keymap.set('n', '<localleader>h', function()
