@@ -12,6 +12,7 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 export HISTCONTROL=ignoreboth:erasedups
 
+alias cat=bat
 alias ls='eza --icons'
 PS1='[\u@\h \W]\$ '
 
