@@ -3,15 +3,25 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        "folke/neodev.nvim",
+        "folke/neoconf.nvim",
     },
     config = function()
+        require("neoconf").setup()
         require("mason").setup()
         require("mason-lspconfig").setup()
         require("mason-lspconfig").setup_handlers {
             function(server_name)
                 require("lspconfig")[server_name].setup {
                     require("coq").lsp_ensure_capabilities(),
-                    settings = { Lua = { diagnostics = { globals = { 'vim' } } } }
+                    settings = {
+                        Lua = { diagnostics = { globals = { 'vim' } } },
+                        -- ["rust-analyzer"] = {
+                        --     rustfmt = {
+                        --         overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" }
+                        --     }
+                        -- }
+                    }
                 }
             end,
         }

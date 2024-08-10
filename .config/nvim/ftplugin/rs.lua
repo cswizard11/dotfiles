@@ -1,0 +1,5 @@
+vim.keymap.set('n', '<localleader>w', function()
+    vim.cmd('%!leptosfmt --stdin --rustfmt')
+    vim.lsp.buf.format()
+    vim.cmd('w')
+end, {})
