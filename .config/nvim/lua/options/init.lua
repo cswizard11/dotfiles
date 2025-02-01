@@ -39,3 +39,7 @@ vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
+
+vim.filetype.add({
+    pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
