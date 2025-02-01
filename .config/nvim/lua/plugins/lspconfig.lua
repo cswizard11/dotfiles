@@ -16,11 +16,6 @@ return {
                     require("coq").lsp_ensure_capabilities(),
                     settings = {
                         Lua = { diagnostics = { globals = { 'vim' } } },
-                        -- ["rust-analyzer"] = {
-                        --     rustfmt = {
-                        --         overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" }
-                        --     }
-                        -- }
                     }
                 }
             end,
