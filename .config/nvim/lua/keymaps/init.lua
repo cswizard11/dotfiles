@@ -12,3 +12,5 @@ vim.keymap.set('n', '<leader>w', function()
     end
     vim.cmd('w')
 end)
+
+vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float)
