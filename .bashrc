@@ -7,7 +7,7 @@ export MANPAGER="nvim +Man!"
 export AWS_CONFIG_FILE="~/.config/.aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="~/.config/.aws/credentials"
 
-export $(envsubst < .env)
+export $(envsubst < ~/.env)
 
 export PATH="$PATH:~/.cargo/bin"
 # If not running interactively, don't do anything
