@@ -8,7 +8,6 @@ return {
     },
     config = function()
         require("neoconf").setup()
-        -- require("java").setup()
         require("mason").setup()
         require("mason-lspconfig").setup()
 
