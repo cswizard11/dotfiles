@@ -12,7 +12,7 @@ return {
                     adapter = "gemini",
                     keymaps = {
                         send = {
-                            modes = { i = "<CR>" }
+                            modes = { n = "<CR>" }
                         }
                     }
                 }

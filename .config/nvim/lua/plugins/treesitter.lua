@@ -17,6 +17,9 @@ return {
             highlight = {
                 enable = true,
             },
+            matchup = {
+                enable = true
+            }
         }
     end
 }
