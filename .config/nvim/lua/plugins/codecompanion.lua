@@ -15,12 +15,15 @@ return {
                             modes = { n = "<CR>" }
                         }
                     }
+                },
+                inline = {
+                    adapter = "gemini",
                 }
             },
             display = {
                 chat = {
                     window = {
-                        layout = "float"
+                        layout = "horizontal"
                     }
                 }
             }
