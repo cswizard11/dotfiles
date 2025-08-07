@@ -6,6 +6,7 @@ return {
         },
         java_test = {
             enable = false,
+            version = '0.43.1',
         },
         java_debug_adapter = {
             enable = false,
