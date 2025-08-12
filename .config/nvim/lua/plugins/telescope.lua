@@ -29,8 +29,8 @@ return {
         pcall(require('telescope').load_extension, 'file_browser')
 
         local builtin = require 'telescope.builtin'
-        vim.keymap.set('n', '<leader>e', function() vim.cmd('Telescope file_browser path=%:p:h select_buffer=true') end,
-            { desc = 'Files' })
+        -- vim.keymap.set('n', '<leader>e', function() vim.cmd('Telescope file_browser path=%:p:h select_buffer=true') end,
+        --     { desc = 'Files' })
 
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
         vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })

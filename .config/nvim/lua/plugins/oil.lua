@@ -3,6 +3,7 @@ return {
     opts = {
         keymaps = {
             ["<BS>"] = { "actions.parent", mode = "n" },
+            ["q"] = { "actions.close", mode = "n" },
         }
     },
     -- Optional dependencies
@@ -10,4 +11,13 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
+    keys = {
+        {
+            "<leader>e",
+            function()
+                vim.cmd("Oil --float " .. vim.fn.expand('%:p:h'));
+            end,
+            desc = "Oil"
+        }
+    }
 }
