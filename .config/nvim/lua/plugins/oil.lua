@@ -3,7 +3,7 @@ return {
     opts = {
         keymaps = {
             ["<BS>"] = { "actions.parent", mode = "n" },
-            ["q"] = { "actions.close", mode = "n" },
+            ["<ESC>"] = { "actions.close", mode = "n" },
         }
     },
     -- Optional dependencies
@@ -13,7 +13,7 @@ return {
     lazy = false,
     keys = {
         {
-            "<leader>e",
+            "<leader>o",
             function()
                 vim.cmd("Oil --float " .. vim.fn.expand('%:p:h'));
             end,
