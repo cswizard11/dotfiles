@@ -14,3 +14,11 @@ vim.keymap.set('n', '<leader>w', function()
 end)
 
 vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float)
+
+vim.keymap.set('n', '<leader>te', function()
+    local dir = vim.fn.input('Directory: ', '', 'dir')
+    if dir ~= '' then
+        vim.cmd('tabnew')
+        vim.cmd('tcd ' .. dir)
+    end
+end)
