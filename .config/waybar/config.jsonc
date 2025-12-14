@@ -3,11 +3,18 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "height": 26,
-
+  "include": [
+    "~/.config/waybar/local.config.jsonc"
+  ],
   // Module layout: workspaces left, clock center, system info right
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock#day", "clock#time", "clock#date"],
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock#day",
+    "clock#time",
+    "clock#date"
+  ],
   "modules-right": [
     "pulseaudio",
     "backlight",
@@ -18,48 +25,50 @@
     "battery",
     "tray"
   ],
-
   // Hyprland workspaces module
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{id}"
   },
-
   // Clock module - centered for visual balance
   // Clock modules - split into 3 boxes
   "clock#day": {
     "format": "{:%a}",
     "tooltip": false
   },
-
   "clock#time": {
     "format": "{:%H:%M}",
     "tooltip": false
   },
-
   "clock#date": {
     "format": "{:%m/%d}",
     "tooltip": false
   },
-
   // Audio module
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟",
     "format-icons": {
-      "headphone": "",
+      "headphone": [
+        "󰋋 󰕿",
+        "󰋋 󰖀",
+        "󰋋 󰕾"
+      ],
       "hands-free": "",
       "headset": "",
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["󰕿", "󰖀", "󰕾"]
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
     },
     "on-click": "pavucontrol",
     "tooltip-format": "Volume: {volume}%",
     "scroll-step": 5
   },
-
   // CPU module
   "cpu": {
     "interval": 5,
@@ -67,7 +76,6 @@
     "on-click": "alacritty -e btm",
     "tooltip": true
   },
-
   // Memory module
   "memory": {
     "interval": 30,
@@ -75,7 +83,6 @@
     "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G ({percentage}%)",
     "on-click": "alacritty -e btm"
   },
-
   // Temperature module
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
@@ -83,7 +90,6 @@
     "tooltip-format": "CPU Temperature: {temperatureC}°C",
     "on-click": "alacritty -e btm"
   },
-
   // Disk module
   "disk": {
     "interval": 30,
@@ -92,22 +98,17 @@
     "tooltip-format": "Home: {used} used / {total} total ({percentage_used}%)",
     "on-click": "alacritty -e ncdu /home --color dark"
   },
-
-  // Temperature module
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
-    "format": "󰔏 {temperatureC}°C",
-    "tooltip-format": "CPU Temperature: {temperatureC}°C",
-    "on-click": "alacritty -e btop"
-  },
-
   // Battery module
   "battery": {
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "󰂄 {capacity}%",
     "format-full": "󱈑 {capacity}%",
-    "format-icons": ["󱊡", "󱊢", "󱊣"],
+    "format-icons": [
+      "󱊡",
+      "󱊢",
+      "󱊣"
+    ],
     "tooltip-format": "{capacity}% {timeTo}",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}% ({timeTo})",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}% ({timeTo})",
@@ -117,17 +118,27 @@
       "critical": 15
     }
   },
-
   // Backlight module
   "backlight": {
     "device": "intel_backlight",
     "format": "{icon} {percent}%",
-    "format-icons": ["󰃞", "󰃞", "󰃞", "󰃞", "󰃟", "󰃟", "󰃟", "󰃝", "󰃝", "󰃝", "󰃠"],
+    "format-icons": [
+      "󰃞",
+      "󰃞",
+      "󰃞",
+      "󰃞",
+      "󰃟",
+      "󰃟",
+      "󰃟",
+      "󰃝",
+      "󰃝",
+      "󰃝",
+      "󰃠"
+    ],
     "on-scroll-up": "brightnessctl set 5%+",
     "on-scroll-down": "brightnessctl set 5%-",
     "tooltip-format": "Brightness: {percent}%"
   },
-
   // System tray
   "tray": {
     "icon-size": 13,

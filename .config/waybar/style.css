@@ -4,17 +4,8 @@
 /* Waybar window */
 window#waybar {
   font-family: monospace;
-  background: @background;
+  background: @transparent;
   color: @foreground;
-}
-
-/* Module containers */
-.modules-left {
-  margin-left: 8px;
-}
-
-.modules-right {
-  margin-right: 8px;
 }
 
 /* Workspaces */
