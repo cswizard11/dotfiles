@@ -28,7 +28,8 @@
   // Hyprland workspaces module
   "hyprland/workspaces": {
     "on-click": "activate",
-    "format": "{id}"
+    "format": "{id}",
+    "all-outputs": true
   },
   // Clock module - centered for visual balance
   // Clock modules - split into 3 boxes
