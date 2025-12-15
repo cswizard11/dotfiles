@@ -142,5 +142,5 @@
     "icon-size": 13,
     "spacing": 5
   },
-  "output": "{{ getenv "WAYBAR_OUTPUT" }}"
+  "output": "{{ getenv "PRIMARY_DISPLAY" }}"
 }
