@@ -3,7 +3,6 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "output": "${WAYBAR_OUTPUT}",
   // Module layout: workspaces left, clock center, system info right
   "modules-left": [
     "hyprland/workspaces"
@@ -113,8 +112,8 @@
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}% ({timeTo})",
     "interval": 5,
     "states": {
-      "warning": 30,
-      "critical": 15
+      "warning": 20,
+      "critical": 10
     }
   },
   // Backlight module
@@ -142,5 +141,6 @@
   "tray": {
     "icon-size": 13,
     "spacing": 5
-  }
+  },
+  "output": "{{ getenv "WAYBAR_OUTPUT" }}"
 }

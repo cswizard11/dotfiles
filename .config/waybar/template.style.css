@@ -1,24 +1,24 @@
 /* Theme colors */
-@define-color background ${COLOR_BACKGROUND};
-@define-color background-alt ${COLOR_BACKGROUND_ALT};
-@define-color background-light ${COLOR_BACKGROUND_LIGHT};
-@define-color foreground ${COLOR_FOREGROUND};
-@define-color foreground-alt ${COLOR_FOREGROUND_ALT};
-@define-color blue ${COLOR_BLUE};
-@define-color cyan ${COLOR_CYAN};
-@define-color green ${COLOR_GREEN};
-@define-color magenta ${COLOR_MAGENTA};
-@define-color orange ${COLOR_ORANGE};
-@define-color purple ${COLOR_PURPLE};
-@define-color red ${COLOR_RED};
-@define-color yellow ${COLOR_YELLOW};
-@define-color warning ${COLOR_WARNING};
-@define-color critical ${COLOR_CRITICAL};
-@define-color success ${COLOR_SUCCESS};
-@define-color workspace-active-bg ${COLOR_WORKSPACE_ACTIVE_BG};
-@define-color workspace-active-fg ${COLOR_WORKSPACE_ACTIVE_FG};
-@define-color workspace-hover-bg ${COLOR_WORKSPACE_HOVER_BG};
-@define-color workspace-hover-fg ${COLOR_WORKSPACE_HOVER_FG};
+@define-color background {{ (ds "theme").colors.background.hex }};
+@define-color background-alt {{ (ds "theme").colors.background_alt.hex }};
+@define-color background-light {{ (ds "theme").colors.background_light.hex }};
+@define-color foreground {{ (ds "theme").colors.foreground.hex }};
+@define-color foreground-alt {{ (ds "theme").colors.foreground_alt.hex }};
+@define-color blue {{ (ds "theme").colors.blue.hex }};
+@define-color cyan {{ (ds "theme").colors.cyan.hex }};
+@define-color green {{ (ds "theme").colors.green.hex }};
+@define-color magenta {{ (ds "theme").colors.magenta.hex }};
+@define-color orange {{ (ds "theme").colors.orange.hex }};
+@define-color purple {{ (ds "theme").colors.purple.hex }};
+@define-color red {{ (ds "theme").colors.red.hex }};
+@define-color yellow {{ (ds "theme").colors.yellow.hex }};
+@define-color warning {{ (ds "theme").colors.warning.hex }};
+@define-color critical {{ (ds "theme").colors.critical.hex }};
+@define-color success {{ (ds "theme").colors.success.hex }};
+@define-color workspace-active-bg {{ (ds "theme").colors.workspace_active.bg }};
+@define-color workspace-active-fg {{ (ds "theme").colors.workspace_active.fg }};
+@define-color workspace-hover-bg {{ (ds "theme").colors.workspace_hover.bg }};
+@define-color workspace-hover-fg {{ (ds "theme").colors.workspace_hover.fg }};
 
 /* Waybar window */
 window#waybar {

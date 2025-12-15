@@ -1,21 +1,15 @@
 #!/bin/bash
-# Generate configs from templates using envsubst
+# Generate configs from templates using gomplate
 
-# Source theme colors
-source ~/.config/themes/colors/${DOTFILES_THEME}.env
+# Set theme (default to tokyo-night if not set)
+THEME=${DOTFILES_THEME:-tokyo-night}
+THEME_JSON=~/.config/themes/colors/${THEME}.json
 
-# Generate configs
-envsubst < ~/.config/waybar/template.config.jsonc > /tmp/waybar-config.jsonc
-envsubst < ~/.config/waybar/template.style.css > /tmp/waybar-style.css
-envsubst < ~/.config/mako/template.config > /tmp/mako-config
-
-# For hyprlock: use sed to replace only color variables, leaving hyprlock vars intact
-sed -e "s|\${COLOR_BACKGROUND_ALT_RGBA}|${COLOR_BACKGROUND_ALT_RGBA}|g" \
-    -e "s|\${COLOR_BLUE_RGBA}|${COLOR_BLUE_RGBA}|g" \
-    -e "s|\${COLOR_FOREGROUND_RGBA}|${COLOR_FOREGROUND_RGBA}|g" \
-    -e "s|\${COLOR_SUCCESS_RGBA}|${COLOR_SUCCESS_RGBA}|g" \
-    -e "s|\${COLOR_CRITICAL_RGBA}|${COLOR_CRITICAL_RGBA}|g" \
-    ~/.config/hypr/template.hyprlock.conf > /tmp/hyprlock.conf
+# Generate all configs with gomplate
+gomplate -d theme=${THEME_JSON} -f ~/.config/waybar/template.config.jsonc -o /tmp/waybar-config.jsonc
+gomplate -d theme=${THEME_JSON} -f ~/.config/waybar/template.style.css -o /tmp/waybar-style.css
+gomplate -d theme=${THEME_JSON} -f ~/.config/hypr/template.hyprlock.conf -o /tmp/hyprlock.conf
+gomplate -d theme=${THEME_JSON} -f ~/.config/mako/template.config -o /tmp/mako-config
 
 pkill waybar
 waybar --config /tmp/waybar-config.jsonc --style /tmp/waybar-style.css &
