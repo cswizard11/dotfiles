@@ -3,9 +3,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "include": [
-    "~/.config/waybar/local.config.jsonc"
-  ],
+  "output": "${WAYBAR_OUTPUT}",
   // Module layout: workspaces left, clock center, system info right
   "modules-left": [
     "hyprland/workspaces"
