@@ -1,0 +1,4 @@
+git:
+  autoFetch: false
+  autoForwardBranches: allBranches
+  ignoreWhitespaceInDiffView: false

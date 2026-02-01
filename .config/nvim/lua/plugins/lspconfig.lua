@@ -3,17 +3,61 @@ return {
     dependencies = {
         "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         "folke/neodev.nvim",
         "folke/neoconf.nvim",
     },
     config = function()
         require("neoconf").setup()
         require("mason").setup()
-        require("mason-lspconfig").setup()
+        require("mason-lspconfig").setup({
+            -- Automatically install these language servers
+            ensure_installed = {
+                "lua_ls",
+                "ts_ls",        -- TypeScript/JavaScript
+                "eslint",       -- ESLint LSP
+            },
+        })
 
+        -- Install formatters and linters (not LSP servers)
+        require("mason-tool-installer").setup({
+            ensure_installed = {
+                "prettier",
+            },
+        })
+
+        -- Lua language server config
         vim.lsp.config('lua_ls', {
             settings = {
-                Lua = { diagnostics = { globals = { "vim" } } },
+                Lua = { diagnostics = { globals = { "vim", "hs" } } },
+            }
+        })
+
+        -- TypeScript/JavaScript language server config
+        vim.lsp.config('ts_ls', {
+            settings = {
+                typescript = {
+                    inlayHints = {
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                    }
+                },
+                javascript = {
+                    inlayHints = {
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                    }
+                }
             }
         })
 
