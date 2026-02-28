@@ -4,18 +4,15 @@ return {
         "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "folke/neodev.nvim",
-        "folke/neoconf.nvim",
     },
     config = function()
-        require("neoconf").setup()
         require("mason").setup()
         require("mason-lspconfig").setup({
             -- Automatically install these language servers
             ensure_installed = {
                 "lua_ls",
-                "ts_ls",        -- TypeScript/JavaScript
-                "eslint",       -- ESLint LSP
+                "ts_ls",  -- TypeScript/JavaScript
+                "eslint", -- ESLint LSP
             },
         })
 
