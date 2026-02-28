@@ -10,7 +10,7 @@ vim.opt.wrap = false
 
 vim.opt.showmode = false
 
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.spell = true
 
@@ -19,12 +19,12 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
@@ -37,5 +37,5 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
 vim.filetype.add({
-    pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
