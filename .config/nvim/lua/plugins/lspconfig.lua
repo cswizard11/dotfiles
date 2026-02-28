@@ -30,6 +30,22 @@ return {
             }
         })
 
+        -- ESLint language server config
+        vim.lsp.config('eslint', {
+            settings = {
+                workingDirectories = { mode = "auto" },
+                format = false, -- Let Prettier handle formatting, ESLint does linting
+            },
+            filetypes = {
+                "javascript",
+                "javascriptreact",
+                "javascript.jsx",
+                "typescript",
+                "typescriptreact",
+                "typescript.tsx",
+            },
+        })
+
         -- TypeScript/JavaScript language server config
         vim.lsp.config('ts_ls', {
             settings = {
