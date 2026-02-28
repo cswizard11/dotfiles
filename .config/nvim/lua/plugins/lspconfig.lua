@@ -90,8 +90,5 @@ return {
             }
         })
 
-        vim.g.coq_settings = { ["clients.lsp.weight_adjust"] = 1.5 }
-        vim.g.coq_settings = { ["clients.lsp.resolve_timeout"] = 0.75 }
-        vim.g.coq_settings = { ["limits.completion_auto_timeout"] = 1 }
     end
 }
