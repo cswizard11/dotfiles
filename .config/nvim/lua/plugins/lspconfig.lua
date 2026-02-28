@@ -76,10 +76,8 @@ return {
 
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('my.lsp', {}),
-            callback = function(args)
+            callback = function()
                 require("coq").lsp_ensure_capabilities()
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration', buffer = args.buf })
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = '[G]oto [D]efinition', buffer = args.buf })
             end,
         })
 
