@@ -5,7 +5,7 @@ vim.g.maplocalleader = ' '
 vim.keymap.set('n', '<leader>w', function()
     local conform_ok, conform = pcall(require, "conform")
     if conform_ok then
-        conform.format({ lsp_fallback = true })
+        conform.format({ lsp_format = "fallback" })
     else
         local client = vim.lsp.get_clients({ bufnr = 0 })[1]
         if client ~= nil then
@@ -23,7 +23,7 @@ end, { desc = 'Format and save' })
 vim.keymap.set('n', '<leader>lp', function()
     local conform_ok, conform = pcall(require, "conform")
     if conform_ok then
-        conform.format({ lsp_fallback = true })
+        conform.format({ lsp_format = "fallback" })
     else
         vim.lsp.buf.format()
     end

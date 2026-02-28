@@ -20,25 +20,7 @@ return {
         },
 
         default_format_opts = {
-            lsp_fallback = true,
-        },
-
-        formatters = {
-            prettier = {
-                -- Use Angular parser for HTML files when in Angular projects
-                prepend_args = function(self, ctx)
-                    local filetype = vim.bo[ctx.buf].filetype
-
-                    -- if filetype == "html" or filetype == "htmlangular" then
-                    --     local root = vim.fs.root(ctx.dirname, { "angular.json", "project.json" })
-                    --     if root then
-                    --         return { "--parser", "angular" }
-                    --     end
-                    -- end
-
-                    return {}
-                end,
-            },
+            lsp_format = "fallback",
         },
     },
 }
