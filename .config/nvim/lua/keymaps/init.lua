@@ -7,7 +7,7 @@ vim.keymap.set('n', '<leader>w', function()
     if conform_ok then
         conform.format({ lsp_fallback = true })
     else
-        local client = vim.lsp.get_active_clients({ bufnr = 0 })[1]
+        local client = vim.lsp.get_clients({ bufnr = 0 })[1]
         if client ~= nil then
             vim.lsp.buf.format()
         else
@@ -54,4 +54,4 @@ vim.keymap.set('n', '<leader>te', function()
         vim.cmd('tabnew')
         vim.cmd('tcd ' .. dir)
     end
-end)
+end, { desc = 'Open tab in directory' })
