@@ -61,6 +61,14 @@ return {
 			desc = "Grep",
 		},
 		{
+			"<leader>/",
+			function()
+				Snacks.picker.grep_word({ focus = "list" })
+			end,
+			mode = { "n", "x" },
+			desc = "Grep word/selection",
+		},
+		{
 			"<leader>fb",
 			function()
 				Snacks.picker.buffers()
@@ -176,6 +184,14 @@ return {
 				Snacks.picker.notifications()
 			end,
 			desc = "Notifications",
+		},
+		{
+			"<C-CR>",
+			function()
+				Snacks.terminal.toggle(vim.o.shell)
+			end,
+			mode = { "n", "t" },
+			desc = "Toggle floating terminal",
 		},
 		-- Git
 		{
