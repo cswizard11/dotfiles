@@ -51,7 +51,12 @@ end, { desc = "Toggle inlay hints" })
 vim.keymap.set("n", "<leader>te", function()
 	local dir = vim.fn.input("Directory: ", "", "dir")
 	if dir ~= "" then
+		local expanded = vim.fn.fnamemodify(vim.fn.expand(dir), ":p")
+		if vim.fn.isdirectory(expanded) == 0 then
+			vim.notify("Not a directory: " .. dir, vim.log.levels.WARN)
+			return
+		end
 		vim.cmd("tabnew")
-		vim.cmd("tcd " .. dir)
+		vim.cmd("tcd " .. vim.fn.fnameescape(expanded))
 	end
 end, { desc = "Open tab in directory" })

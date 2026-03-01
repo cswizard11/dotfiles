@@ -14,7 +14,7 @@ return {
 		{
 			"<leader>o",
 			function()
-				vim.cmd("Oil" .. vim.fn.expand("%:p:h"))
+				vim.cmd("Oil " .. vim.fn.expand("%:p:h"))
 			end,
 			desc = "Oil",
 		},
