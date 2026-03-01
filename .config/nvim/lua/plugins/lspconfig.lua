@@ -1,19 +1,60 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
+		"ms-jpq/coq_nvim",
 		"mason-org/mason.nvim",
 		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
+		local coq = require("coq")
+
+		local function load_servers()
+			local uv = vim.uv or vim.loop
+			local path = vim.fn.stdpath("config") .. "/lua/lsp/servers"
+			local handle = uv.fs_scandir(path)
+			local names = {}
+			local loaded = {}
+
+			if not handle then
+				return loaded
+			end
+
+			while true do
+				local name, file_type = uv.fs_scandir_next(handle)
+				if not name then
+					break
+				end
+
+				if file_type == "file" and name:sub(-4) == ".lua" and name ~= "init.lua" and name:sub(1, 1) ~= "_" then
+					names[#names + 1] = name:sub(1, -5)
+				end
+			end
+
+			table.sort(names)
+
+			for _, name in ipairs(names) do
+				local ok, config = pcall(require, "lsp.servers." .. name)
+				if ok and type(config) == "table" then
+					loaded[name] = config
+				elseif ok then
+					vim.notify("lsp.servers." .. name .. " must return a table", vim.log.levels.ERROR)
+				else
+					vim.notify("Failed to load lsp.servers." .. name .. ": " .. tostring(config), vim.log.levels.ERROR)
+				end
+			end
+
+			return loaded
+		end
+
+		local servers = load_servers()
+		local mason_lspconfig = require("mason-lspconfig")
+
 		require("mason").setup()
-		require("mason-lspconfig").setup({
-			-- Automatically install these language servers
-			ensure_installed = {
-				"lua_ls",
-				"ts_ls", -- TypeScript/JavaScript
-				"eslint", -- ESLint LSP
-			},
+		mason_lspconfig.setup({
+			-- Automatically install custom-configured language servers
+			ensure_installed = vim.tbl_keys(servers),
+			automatic_enable = false,
 		})
 
 		-- Install formatters and linters (not LSP servers)
@@ -23,63 +64,21 @@ return {
 			},
 		})
 
-		-- Lua language server config
-		vim.lsp.config("lua_ls", {
-			settings = {
-				Lua = { diagnostics = { globals = { "vim", "hs", "Snacks" } } },
-			},
-		})
+		local enabled = {}
 
-		-- ESLint language server config
-		vim.lsp.config("eslint", {
-			settings = {
-				workingDirectories = { mode = "auto" },
-				format = false, -- Let Prettier handle formatting, ESLint does linting
-			},
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"javascript.jsx",
-				"typescript",
-				"typescriptreact",
-				"typescript.tsx",
-			},
-		})
+		for name, config in pairs(servers) do
+			vim.lsp.config(name, coq.lsp_ensure_capabilities(config))
+			vim.lsp.enable(name)
+			enabled[name] = true
+		end
 
-		-- TypeScript/JavaScript language server config
-		vim.lsp.config("ts_ls", {
-			settings = {
-				typescript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-					},
-				},
-				javascript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-					},
-				},
-			},
-		})
-
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("my.lsp", {}),
-			callback = function()
-				require("coq").lsp_ensure_capabilities()
-			end,
-		})
+		for _, name in ipairs(mason_lspconfig.get_installed_servers()) do
+			if not enabled[name] then
+				vim.lsp.config(name, coq.lsp_ensure_capabilities({}))
+				vim.lsp.enable(name)
+				enabled[name] = true
+			end
+		end
 
 		vim.diagnostic.config({
 			signs = {
