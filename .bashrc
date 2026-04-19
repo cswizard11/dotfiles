@@ -35,3 +35,6 @@ alias ls='eza --icons'
 PS1='[\u@\h \W]\$ '
 
 eval "$(starship init bash)"
+
+# uv
+export PATH="/home/cswizard/.local/bin:$PATH"
