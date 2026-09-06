@@ -31,7 +31,7 @@ ykload() {
 export HISTCONTROL=ignoreboth:erasedups
 
 alias cat=bat
-alias ls='eza --icons'
+alias ls='eza --icons=auto'
 PS1='[\u@\h \W]\$ '
 
 eval "$(starship init bash)"
